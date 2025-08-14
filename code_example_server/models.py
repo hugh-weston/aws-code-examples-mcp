@@ -14,7 +14,27 @@
 """Data models for AWS Code Examples MCP Server."""
 
 from pydantic import BaseModel
-from typing import Optional
+from typing import List, Optional
+
+from code_example_server.constants import (
+    CategoryType,
+    LanguageType,
+    LANGUAGE_VERSIONS,
+    ServiceType,
+    VersionType
+)
+
+
+class CodeExampleResult(BaseModel):
+    """Code example result from AWS code example search."""
+
+    example_id: str
+    language: Optional[LanguageType] = None
+    service: Optional[ServiceType] = None
+    version: Optional[VersionType] = None
+    category: Optional[CategoryType] = None
+    description: Optional[str] = None
+    documentation_urls: Optional[List[str]] = None
 
 
 class SearchResult(BaseModel):

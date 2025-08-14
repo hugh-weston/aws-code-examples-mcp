@@ -9,6 +9,9 @@ This MCP server provides tools to access AWS code examples, search for content, 
 - **Read Documentation**: Fetch and convert AWS documentation pages to markdown format
 - **Search Documentation**: Search AWS documentation using the official search API (global only)
 - **Recommendations**: Get content recommendations for AWS documentation pages (global only)
+- **Search Code Examples**: Search for AWS code examples across all services and programming languages
+- **Read Code Examples**: Retrieve complete source code and context for specific examples
+- **Setup Code Examples**: Download and prepare code examples for local development and testing
 - **Get Available Services List**: Get a list of available AWS services in China regions (China only)
 
 ## Prerequisites
@@ -27,10 +30,16 @@ Configure the MCP server in your MCP client configuration (e.g., for Amazon Q De
   "mcpServers": {
     "aws-code-examples-mcp": {
       "command": "uvx",
-      "args": ["aws-code-examples-mcp@latest"],
+      "args": ["/path/to/aws-code-examples-mcp"],
       "env": {
         "FASTMCP_LOG_LEVEL": "ERROR",
-        "AWS_DOCUMENTATION_PARTITION": "aws"
+        "AWS_DOCUMENTATION_PARTITION": "aws",
+        "AWS_REGION": "us-east-1",
+        "CODE_EXAMPLES_S3_VECTOR_BUCKET": "code-examples-mcp-demo",
+        "CODE_EXAMPLES_S3_VECTOR_INDEX": "text-index",
+        "BEDROCK_TEXT_EMBEDDING_MODEL_ID": "amazon.titan-embed-text-v2:0",
+        "SAGEMAKER_CODE_EMBEDDING_MODEL_ID": "nomic-embed-code-endpoint",
+        "CODE_CONTENT_S3_BUCKET": "code-example-content-partitions"
       },
       "disabled": false,
       "autoApprove": []
